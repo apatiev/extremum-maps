@@ -1,0 +1,61 @@
+[
+  {
+    "name": "Яндекс",
+    "url": "http://vec0{s}.maps.yandex.net/tiles?l=map&x={x}&y={y}&z={z}",
+    "options": {
+      "subdomains": ["1", "2", "3", "4"]
+    }
+  },
+  {
+    "name": "Яндекс Спутник",
+    "url": "http://sat0{s}.maps.yandex.net/tiles?l=sat&x={x}&y={y}&z={z}",
+    "options": {
+      "subdomains": ["1", "2", "3", "4"]
+    }
+  },
+  {
+    "name": "Яндекс Гибрид",
+    "group": [
+      {
+        "url": "http://sat0{s}.maps.yandex.net/tiles?l=sat&x={x}&y={y}&z={z}",
+        "options": {
+          "subdomains": ["1", "2", "3", "4"]
+        }
+      },
+      {
+        "url": "http://vec0{s}.maps.yandex.net/tiles?l=skl&x={x}&y={y}&z={z}",
+        "options": {
+          "subdomains": ["1", "2", "3", "4"]
+        }
+      }
+    ]
+  },
+  {
+    "name": "Google",
+    "url": "http://mt{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}",
+    "options": {
+      "subdomains": ["0", "1", "2", "3"]
+    }
+  },
+  {
+    "name": "Google Спутник",
+    "url": "http://mt{s}.google.com/vt/lyrs=s&x={x}&y={y}&z={z}",
+    "options": {
+      "subdomains": ["0", "1", "2", "3"]
+    }
+
+  },
+  {
+    "name": "Генштаб 250",
+    "url": "http://map.extremum.org/maps875/genshtab250m/z{z}/{y}/{x}.jpg",
+    "options": {
+    }
+  },
+  {
+    "name": "Open Street Map",
+    "url": "http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+    "options": {
+      "subdomains": ["a","b","c"]
+    }
+  }
+]

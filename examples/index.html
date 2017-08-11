@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Extremum Maps Test</title>
+
+    <meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.3/dist/leaflet.css" />
+
+    <script src="../lib/extremum-maps.min.js"></script>
+</head>
+<body>
+    <div id="mapbox" style="width: 800px; height: 400px;"></div>
+    <script>
+        var map = L.extremum.map('mapbox', "/extremum-maps/examples/layers.json")
+            .setView([58.831965, 29.257681], 13)
+            .addTrack("/extremum-maps/examples/tracks/0F02E994A8AE71C343258135005ECFE142.xml")
+            .addTrack("/extremum-maps/examples/tracks/597BDF5912920B9F43258134004EE47564.xml")
+            .addTrack("/extremum-maps/examples/tracks/EE91938A7F04870743258134007863D390.xml")
+            .addTrack("/extremum-maps/examples/tracks/D9BD3A9ADEF96AF643258135004ECE6B41.xml")
+            .addTrack("/extremum-maps/examples/tracks/78EBDB8D9B3A03C943258135005F0F1790.xml")
+            .addTrack("/extremum-maps/examples/tracks/D349C8FAAFC1532043258135005F414722.xml")
+            .addTrack("/extremum-maps/examples/tracks/E4DCCECB6BCDA0A5432581350064335A45.xml")
+            .addTrack("/extremum-maps/examples/tracks/6FD424B5DF13A2B8432581360033070F99.xml")
+            .addTrack("/extremum-maps/examples/tracks/C5D0A57F06A2CF6B432581370077AE3821.xml")
+            .addPlacemark([58.831965, 29.257681], 'Центр', 'Центр района');
+    </script>
+</body>
+</html>

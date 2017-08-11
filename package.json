@@ -1,0 +1,24 @@
+{
+  "name": "extremum-maps",
+  "main": "lib/extremum-maps.min.js",
+  "description": "Library for displaying maps in VRA Extremum internal system",
+  "version": "0.0.1",
+  "license": "MIT",
+  "repository": "there-is-no-repo",
+  "scripts": {
+    "build": "webpack --env build"
+  },
+  "dependencies": {
+    "leaflet": "1.2.0",
+    "@mapbox/leaflet-omnivore": "0.3.4",
+    "promise-polyfill": "6.0.2",
+    "whatwg-fetch": "2.0.2"
+  },
+  "devDependencies": {
+    "babel-eslint": "7.1.1",
+    "eslint": "1.7.2",
+    "eslint-loader": "1.6.1",
+    "webpack": "2.2.1",
+    "yargs": "6.6.0"
+  }
+}
