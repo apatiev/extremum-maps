@@ -26,15 +26,14 @@ var Map = L.Map.extend({
         var customLayer = L.geoJson(null, {
             style: function (feature) {
                 return {
-                    color: feature.properties['stroke'],
+                    color: feature.properties.stroke,
                     width: feature.properties['stroke-width'],
-                    opacity: feature.properties['opacity']
+                    opacity: feature.properties.opacity
                 };
             },
 
             onEachFeature: function (feature, layer) {
-                layer.bindPopup(feature.properties['name']);
-                layer.name = feature.properties['name'];
+                layer.bindPopup(feature.properties.name);
             }
         });
 
