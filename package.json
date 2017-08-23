@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "leaflet": "1.2.0",
+    "leaflet-fullscreen": "1.0.1",
     "@mapbox/leaflet-omnivore": "0.3.4",
     "promise-polyfill": "6.0.2",
     "whatwg-fetch": "2.0.2"

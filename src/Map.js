@@ -10,16 +10,22 @@ var Map = L.Map.extend({
     initialize: function (element, layersUrl, options) {
         L.Map.prototype.initialize.call(this, element, L.extend({}, L.Map.prototype.options, options));
 
+        this._tracksGroup = L.featureGroup();
+        this._tracksGroup.addTo(this);
+
+        this._placemarksGroup = L.featureGroup();
+        this._placemarksGroup.addTo(this);
+
+        this.addControl(new L.Control.Fullscreen());
+
+        this.on('baselayerchange', L.bind(function (event) {
+            this._onBaseLayerChange(event);
+        }, this));
+
         this._loadBaseLayerDefinitions(layersUrl)
             .then(L.bind(function (definition) {
                 this._createBaseLayers(definition);
             }, this));
-
-        this._tracksFeatureGroup = L.featureGroup();
-        this._tracksFeatureGroup.addTo(this);
-
-        this._placemarksFeatureGroup = L.featureGroup();
-        this._placemarksFeatureGroup.addTo(this);
     },
 
     addTrack: function (url) {
@@ -39,21 +45,13 @@ var Map = L.Map.extend({
 
         var trackLayer = omnivore.kml(url, null, customLayer);
 
-        trackLayer.addTo(this._tracksFeatureGroup);
+        trackLayer.addTo(this._tracksGroup);
 
         return this;
     },
 
     addPlacemark: function (lanlng, title, description) {
-        var placemark = L.marker(lanlng, {
-            title: title,
-            alt: title,
-            riseOnHover: true
-        });
-
-        placemark.bindPopup('<b>' + title + '</b><br>' + description);
-        placemark.addTo(this._placemarksFeatureGroup);
-
+        L.extremum.placemark(lanlng, title, description).addTo(this);
         return this;
     },
 
@@ -81,34 +79,72 @@ var Map = L.Map.extend({
 
     _createBaseLayers: function (definition) {
         var baseLayers = {};
-        var baseLayer;
+        var newBaseLayer;
+        var firstBaseLayer;
         var i, j;
 
         if (definition.constructor === Array && definition.length > 0) {
             for (i = 0; i < definition.length; ++i) {
-                if ('group' in definition[i]) {
-                    baseLayer = new L.LayerGroup();
+                if (definition[i].group !== undefined) {
+                    newBaseLayer = new L.LayerGroup();
 
                     for (j = 0; j < definition[i].group.length; ++j) {
-                        baseLayer.addLayer(new L.TileLayer(
+                        newBaseLayer.addLayer(new L.extremum.TileLayer(
                             definition[i].group[j].url,
                             definition[i].group[j].options)
                         );
                     }
                 } else {
-                    baseLayer = new L.TileLayer(
+                    newBaseLayer = new L.extremum.TileLayer(
                         definition[i].url,
                         definition[i].options);
                 }
 
-                baseLayers[definition[i].name] = baseLayer;
+                baseLayers[definition[i].name] = newBaseLayer;
             }
 
-            baseLayers[definition[0].name].addTo(this);
+            firstBaseLayer = baseLayers[definition[0].name];
+            firstBaseLayer.addTo(this);
+
+            this._setCRSFromLayer(firstBaseLayer);
 
             this._layersControl = L.control.layers(baseLayers);
             this._layersControl.addTo(this);
         }
+    },
+
+    _setCRSFromLayer: function (layer) {
+        var center;
+        var layers;
+        var crs;
+        var i;
+
+        if (layer instanceof L.extremum.TileLayer) {
+            crs = layer.options.crs;
+
+            if (crs !== null && crs !== this.options.crs) {
+                center = this.getCenter();
+                this.options.crs = crs;
+                this.setView(center);
+                this._resetView(this.getCenter(), this.getZoom());
+            }
+
+        } else if (layer instanceof L.LayerGroup) {
+            layers = layer.getLayers();
+
+            for (i = 0; i < layers.length; ++i) {
+                crs = this._setCRSFromLayer(layers[i]);
+                if (crs !== null) {
+                    break;
+                }
+            }
+        }
+
+        return crs;
+    },
+
+    _onBaseLayerChange: function (e) {
+        this._setCRSFromLayer(e.layer);
     }
 });
 
