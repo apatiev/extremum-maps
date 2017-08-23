@@ -1,0 +1,19 @@
+
+.leaflet-control-graphicscale .label {
+    font-size: 1em;
+    text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;
+}
+
+.leaflet-control-graphicscale .labelSub {
+    font-size: 0.8em;
+    text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;
+}
+
+.leaflet-control-graphicscale .line {
+    border-color: rgba(0, 0, 0, 0.3);
+    background-color: rgba(255, 255, 255, 0.9);
+}
+
+.leaflet-control-graphicscale .filled .fill {
+    background-color: rgba(0, 0, 0, 0.5);
+}

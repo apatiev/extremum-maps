@@ -1,33 +1,55 @@
 /* global __dirname, require, module */
 
+const env = require('yargs').argv.env;
+
 const webpack = require('webpack');
 const UglifyJsPlugin = webpack.optimize.UglifyJsPlugin;
-const path = require('path');
-const env = require('yargs').argv.env; // use --env with webpack 2
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 
 var libraryName = 'extremum-maps';
 
-var plugins = [], outputFile;
+var outputJsFile;
+var outputCssFile;
+var plugins = [ ];
 
 if (env === 'build') {
+    outputJsFile = libraryName + '.min.js';
+    outputCssFile = libraryName + '.min.css';
+
     plugins.push(new UglifyJsPlugin({minimize: true}));
-    outputFile = libraryName + '.min.js';
+    plugins.push(new OptimizeCssAssetsPlugin());
+
 } else {
-    outputFile = libraryName + '.js';
+    outputJsFile = libraryName + '.js';
+    outputCssFile = libraryName + '.css';
 }
+
+plugins.push(new ExtractTextPlugin(outputCssFile));
 
 const config = {
     entry: ['whatwg-fetch', __dirname + '/src/index.js'],
     devtool: 'source-map',
     output: {
         path: __dirname + '/lib',
-        filename: outputFile,
+        filename: outputJsFile,
         library: libraryName,
         libraryTarget: 'umd',
         umdNamedDefine: true
     },
     module: {
-        rules: [
+        loaders: [
+            {
+                test: /\.css$/,
+                loader: ExtractTextPlugin.extract({ fallback: 'style-loader', use: 'css-loader' })
+            },
+            {
+                test: /\.(png|jpg|jpeg|gif|svg|woff|woff2|ttf|eot)$/,
+                loader: 'file-loader',
+                options: {
+                    'name': 'images/[name].[ext]'
+                }
+            },
             {
                 test: /(\.jsx|\.js)$/,
                 exclude: /node_modules/
