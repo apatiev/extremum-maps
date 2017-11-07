@@ -17,6 +17,7 @@ var Map = L.Map.extend({
         this._placemarksGroup.addTo(this);
 
         this.addControl(new L.Control.Fullscreen());
+        this.addControl(new L.extremum.Control.Measure());
         this.addControl(new L.Control.GraphicScale({
             fill: 'hollow',
             subUnits: true

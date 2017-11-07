@@ -1,0 +1,26 @@
+.leaflet-extremum-control-measure a {
+    background: #fff url(../images/measure.svg) no-repeat 0 0;
+    background-size: 26px 52px;
+}
+
+.leaflet-touch .leaflet-extremum-control-measure a {
+    background-position: 2px 2px;
+}
+
+.leaflet-touch.leaflet-extremum-measure-on .leaflet-extremum-control-measure a {
+    background-position: 2px -24px;
+}
+
+.leaflet-extremum-measure-popup .leaflet-popup-tip {
+    width: 12px;
+    height: 12px;
+}
+
+.leaflet-extremum-measure-popup .leaflet-popup-content {
+    margin: 2px 22px 2px 5px;
+}
+
+.leaflet-extremum-measure-popup .leaflet-popup-content-wrapper {
+    border-radius: unset;
+}
+

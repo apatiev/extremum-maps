@@ -4,6 +4,7 @@ var L = require('leaflet');
 var map = require('./Map');
 var placemark = require('./Placemark');
 var tileLayer = require('./TileLayer');
+var measure = require('./Measure');
 
 require('leaflet-fullscreen');
 require('leaflet-graphicscale');
@@ -25,5 +26,11 @@ L.extremum = module.exports = {
     placemark: placemark.placemark,
     Placemark: placemark.Placemark,
     tileLayer: tileLayer.tileLayer,
-    TileLayer: tileLayer.TileLayer
+    TileLayer: tileLayer.TileLayer,
+    Control: {
+        Measure: measure.Measure
+    },
+    control: {
+        measure: measure.measure
+    }
 };
