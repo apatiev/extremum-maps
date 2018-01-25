@@ -1,14 +1,14 @@
 .leaflet-extremum-control-measure a {
-    background: #fff url(../images/measure.svg) no-repeat 0 0;
-    background-size: 26px 52px;
+    background: #fff url(../images/measure.png) no-repeat 0 0;
+    background-size: 22px 48px;
 }
 
 .leaflet-touch .leaflet-extremum-control-measure a {
-    background-position: 2px 2px;
+    background-position: 4px 4px;
 }
 
 .leaflet-touch.leaflet-extremum-measure-on .leaflet-extremum-control-measure a {
-    background-position: 2px -24px;
+    background-position: 4px -22px;
 }
 
 .leaflet-extremum-measure-popup .leaflet-popup-tip {
@@ -24,3 +24,10 @@
     border-radius: unset;
 }
 
+@media
+  (-webkit-min-device-pixel-ratio:2),
+  (min-resolution:192dpi) {
+    .leaflet-extremum-control-measure a {
+      background-image:url(../images/measure@2x.png);
+    }
+  }

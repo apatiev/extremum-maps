@@ -23,8 +23,16 @@
             .addTrack("/extremum-maps/examples/tracks/D349C8FAAFC1532043258135005F414722.xml")
             .addTrack("/extremum-maps/examples/tracks/E4DCCECB6BCDA0A5432581350064335A45.xml")
             .addTrack("/extremum-maps/examples/tracks/6FD424B5DF13A2B8432581360033070F99.xml")
-            .addTrack("/extremum-maps/examples/tracks/C5D0A57F06A2CF6B432581370077AE3821.xml")
-            .addPlacemark([58.831965, 29.257681], 'Центр', 'Центр района');
+            .addTrack("/extremum-maps/examples/tracks/C5D0A57F06A2CF6B432581370077AE3821.xml");
+
+        L.extremum.placemark([58.831965, 29.257681], 'Центр', 'Центр района', {
+            draggable: true
+        }).on('dragend', function(event) {
+            var coord = event.target.getLatLng();
+            // here you can save new coordinates
+            // coord.lat — latitude in degrees
+            // coord.lon — longitude in degrees
+        }).addTo(map);
 
     </script>
 </body>

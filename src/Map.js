@@ -55,8 +55,8 @@ var Map = L.Map.extend({
         return this;
     },
 
-    addPlacemark: function (lanlng, title, description) {
-        L.extremum.placemark(lanlng, title, description).addTo(this);
+    addPlacemark: function (lanlng, title, description, options) {
+        L.extremum.placemark(lanlng, title, description, options).addTo(this);
         return this;
     },
 
