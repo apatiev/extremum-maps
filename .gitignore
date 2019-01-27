@@ -1,3 +1,4 @@
 .idea
 .nvmrc
+yarn.lock
 /node_modules/

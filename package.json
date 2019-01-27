@@ -9,8 +9,8 @@
     "build": "webpack --env build"
   },
   "dependencies": {
-    "leaflet": "1.2.0",
-    "leaflet-fullscreen": "1.0.1",
+    "leaflet": "1.4.0",
+    "leaflet-fullscreen": "1.0.2",
     "leaflet-graphicscale": "0.0.2",
     "@mapbox/leaflet-omnivore": "0.3.4",
     "promise-polyfill": "6.0.2",
