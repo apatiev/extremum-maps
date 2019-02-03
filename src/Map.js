@@ -130,8 +130,7 @@ var Map = L.Map.extend({
             if (crs !== null && crs !== this.options.crs) {
                 center = this.getCenter();
                 this.options.crs = crs;
-                this.setView(center);
-                this._resetView(this.getCenter(), this.getZoom());
+                this._resetView(center, this.getZoom());
             }
 
         } else if (layer instanceof L.LayerGroup) {
