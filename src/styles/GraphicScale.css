@@ -1,10 +1,12 @@
 
 .leaflet-control-graphicscale .label {
+    color: black;
     font-size: 1em;
     text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;
 }
 
 .leaflet-control-graphicscale .labelSub {
+    color: black;
     font-size: 0.8em;
     text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;
 }
